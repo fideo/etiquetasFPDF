@@ -14,18 +14,29 @@ class PDF(FPDF):
   def imagen_fondo(self, name, x, y, w, h):
     self.image(name, x, y, w, h)
 
-  def texts(self, name):
-    with open(name,'rb') as xy:
-      txt=xy.read().decode('UTF-8')
+  def texts(self, txt):    
     self.set_xy(10.0,30.0)
     self.set_text_color(0, 0, 0)
     self.set_font('Arial', 'B', 22)
     self.multi_cell(0, 10, txt, 0, "C")
   
 
-pdf = PDF('P','mm',(100,80)) #objeto PDF
-pdf.add_page()
-pdf.imagen_fondo('fondo.png',0,0,100,80)
-pdf.texts('data.txt')
-pdf.set_author('Federico mazzei')
-pdf.output('test.pdf', 'F')
+def armarPDF():
+  pdf = PDF('P','mm',(100,80)) #objeto PDF
+  ruta_archivo_productos = ruta_archivo_productos = '/home/fideo/proyectos/etiquetasFPDF/data.txt'
+  fichero = open(ruta_archivo_productos)
+  lineas = fichero.readlines()
+  for linea in lineas:
+    pdf.add_page()
+    pdf.imagen_fondo('fondo.png',0,0,100,80)
+    pdf.texts(linea)    
+  fichero.close()
+  pdf.set_title('Etiquetas para productos')
+  pdf.set_subject('Este documento contiene las etiquetas generadas por Federico Mazzei')
+  pdf.set_keywords('etiquetas')
+  pdf.set_creator('Federico mazzei')
+  pdf.set_author('Federico mazzei')
+  pdf.output('etiquetas.pdf', 'F')
+
+armarPDF()
+
