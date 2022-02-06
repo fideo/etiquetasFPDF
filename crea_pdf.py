@@ -4,8 +4,6 @@
 #
 # 2- Correr pip install -r requirements.txt
 
-from calendar import c
-from re import L
 from fpdf import FPDF
 
 class PDF(FPDF):
