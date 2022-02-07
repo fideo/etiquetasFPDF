@@ -5,6 +5,7 @@
 # 2- Correr pip install -r requirements.txt
 
 from fpdf import FPDF
+from datetime import datetime
 
 class PDF(FPDF):
   pass # hace que no pase nada cuando se ejecuta
@@ -20,14 +21,16 @@ class PDF(FPDF):
   
 
 def armarPDF():
+  now = datetime.now()
   pdf = PDF('P','mm',(100,80)) #objeto PDF
-  ruta_archivo_productos = ruta_archivo_productos = 'C:/proyectos/etiquetasFPDF/data.txt'
+  ruta_archivo_productos = ruta_archivo_productos = './data.txt'
   fichero = open(ruta_archivo_productos)
   lineas = fichero.readlines()
   for linea in lineas:
-    pdf.add_page()
-    pdf.imagen_fondo('fondo.png',0,0,100,80)
-    pdf.texts(linea)    
+    if linea != "\n":
+      pdf.add_page()
+      pdf.imagen_fondo('fondo.png',0,0,100,80)
+      pdf.texts(linea.strip())
   fichero.close()
   pdf.set_title('Etiquetas para productos')
   pdf.set_subject('Este documento contiene las etiquetas generadas por Federico Mazzei')
@@ -35,6 +38,7 @@ def armarPDF():
   pdf.set_creator('Federico mazzei')
   pdf.set_author('Federico mazzei')
   pdf.output('etiquetas.pdf', 'F')
+  pdf.output('pdfEjecutados/etiquetas-'+str(now)+'.pdf', 'F')
 
 armarPDF()
 
