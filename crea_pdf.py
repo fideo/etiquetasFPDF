@@ -23,7 +23,7 @@ class PDF(FPDF):
 def armarPDF():
   now = datetime.now()
   pdf = PDF('P','mm',(100,80)) #objeto PDF
-  ruta_archivo_productos = ruta_archivo_productos = './data.txt'
+  ruta_archivo_productos = './data.txt'
   fichero = open(ruta_archivo_productos)
   lineas = fichero.readlines()
   for linea in lineas:
@@ -38,7 +38,7 @@ def armarPDF():
   pdf.set_creator('Federico mazzei')
   pdf.set_author('Federico mazzei')
   pdf.output('etiquetas.pdf', 'F')
-  pdf.output('./pdfEjecutados/etiquetas-'+str(now)+'.pdf', 'F')
+  pdf.output('etiquetas-'+str(now)+'.pdf', 'F')
 
 armarPDF()
 
