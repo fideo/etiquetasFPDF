@@ -38,7 +38,7 @@ def armarPDF():
   pdf.set_creator('Federico mazzei')
   pdf.set_author('Federico mazzei')
   pdf.output('etiquetas.pdf', 'F')
-  pdf.output('pdfEjecutados/etiquetas-'+str(now)+'.pdf', 'F')
+  pdf.output('./pdfEjecutados/etiquetas-'+str(now)+'.pdf', 'F')
 
 armarPDF()
 
