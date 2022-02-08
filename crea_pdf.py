@@ -24,7 +24,7 @@ def armarPDF():
   now = datetime.now()
   pdf = PDF('P','mm',(100,80)) #objeto PDF
   ruta_archivo_productos = './data.txt'
-  fichero = open(ruta_archivo_productos)
+  fichero = open(ruta_archivo_productos, encoding="utf-8")
   lineas = fichero.readlines()
   for linea in lineas:
     if linea != "\n":
