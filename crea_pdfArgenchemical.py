@@ -37,8 +37,8 @@ def armarPDF():
         pdf.add_page()
         pdf.imagen_fondo('fondoArgenchemical.png',0,0,100,80)
         producto = (linea.split())
-        pdf.producto(" ".join(producto[1:]))
-        if "POLVO" in producto[1:]:
+        pdf.producto(" ".join(producto[1:]).upper())
+        if "POLVO" in str(producto[1:]).upper():
             pdf.cantidad(producto[0]+"K")
         else:
             pdf.cantidad(producto[0]+"L")
