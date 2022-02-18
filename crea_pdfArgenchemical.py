@@ -33,13 +33,13 @@ class PDF(FPDF):
 def armarPDF():
   now = datetime.now()
   pdf = PDF('P','mm',(100,80)) #objeto PDF
-  ruta_archivo_productos = './dataArgenchemical.txt'
+  ruta_archivo_productos = './assets/dataArgenchemical.txt'
   with open(ruta_archivo_productos, encoding='utf-8') as contenido:
     lineas = contenido.readlines()
     for linea in lineas:
       if linea != "\n":
         pdf.add_page()
-        pdf.imagen_fondo('fondoArgenchemical.png',0,0,100,80)
+        pdf.imagen_fondo('./assets/images/fondoArgenchemical.png',0,0,100,80)
         producto = (linea.split())
         pdf.producto(" ".join(producto[1:]).upper())
         if "POLVO" in str(producto[1:]).upper():
